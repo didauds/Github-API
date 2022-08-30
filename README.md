@@ -4,13 +4,17 @@ This project is written in ReactJS and utilizes the GitHub API in order to searc
 
 You can set the number of repositories displayed per page.
 
-You can view most recent 30 commits with date and commit messages for each repository.
+In the Commits page, you can view most recent 30 commits with date, committer and commit messages for each commit.
 
 You can also visit the commits in GitHub page by clicking the links.
 
 ## Available Scripts
 
 In the project directory, you can run:
+
+### `yarn install`
+
+Please make sure you have `yarn` installed on your system, then run `yarn install` to get all necessary libraries.
 
 ### `yarn start`
 
