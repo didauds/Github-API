@@ -65,6 +65,7 @@ const Home = () => {
   };
 
   useEffect(() => {
+    setRepos([]);
     const displayReposOnChange = async () => {
       if (query) {
         const items = await fetchRepos();

@@ -8,7 +8,7 @@ const ScrollButton = () => {
           window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
         }}
       >
-        Scrool to Top
+        Scroll to Top
       </button>
     </div>
   );
