@@ -2,7 +2,9 @@
 
 This project is written in ReactJS and utilizes the GitHub API in order to search and get any relevant repositories sorting by Stars in descending order.
 
-You can visit the repositories by clicking the links or view most recent 30 commits with date and commit messages.
+You can set the number of repositories displayed per page.
+
+You can view most recent 30 commits with date and commit messages for each repository.
 
 You can also visit the commits in GitHub page by clicking the links.
 
