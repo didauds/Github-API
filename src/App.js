@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./components/pages/Home/Home";
-import Repository from "./components/pages/Repository/Repository";
+import Commits from "./components/pages/Commits/Commits";
 import "./App.css";
 
 function App() {
@@ -8,7 +8,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="repos/:login/:name" element={<Repository />} />
+        <Route path="repos/:login/:name" element={<Commits />} />
       </Routes>
     </BrowserRouter>
   );

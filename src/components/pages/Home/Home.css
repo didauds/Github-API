@@ -1,5 +1,6 @@
+/* Search Form */
 .search-form {
-  background: #333;
+  background: #444;
   padding: 10px 40px;
   border-radius: 5px;
   height: 10rem;
@@ -30,27 +31,27 @@
 .search-form button:hover {
   background: #1565c0;
 }
+
+/* Searched Repos */
 .search-results {
   background-color: white;
-  padding: 10px 30px;
+  padding: 10px;
   margin: 20px 0;
   border-radius: 5px;
+  word-break: break-word;
 }
-
 .repo {
   display: flex;
   flex-direction: row;
-  margin: 5px 0;
+  margin: 5px 0px;
   align-items: center;
-  padding: 0px 0px;
+  padding: 5px 0px;
   border-bottom: #444 solid 1px;
 }
-.repo .image {
-  width: 20%;
-}
 .repo .image img {
-  width: 100%;
-  border-radius: 10%;
+  border-radius: 5px;
+  width:  8rem;
+  height: 8rem;
 }
 .repo-info * {
   display: block;
@@ -78,4 +79,23 @@
   background-color: white;
   color: #333;
   margin: 0 5px;
+}
+
+@media only screen and (max-width:1366px) {
+  .search-form {
+    height: 15rem;
+    padding: 10px 15px;
+  }
+  .search-form label {
+    font-size: 14px;
+  }
+  .search-form input {
+    width: 50%;
+  }
+  .search-form form button {
+    padding: 14px;
+  }
+  .search-results {
+    margin: 0px;
+  }
 }

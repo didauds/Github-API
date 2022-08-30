@@ -17,6 +17,7 @@ const Home = () => {
     setQuery(value);
   };
 
+  /** Fetch GitHub API, sort by number of Stars in descending order */
   const fetchRepos = async () => {
     setLoading(true);
     try {
@@ -57,6 +58,7 @@ const Home = () => {
     setPage((page) => page + 1);
   };
 
+  /** Handle number of Repo displaying on a page */
   const handlePageLimit = (e) => {
     const value = e.target.value;
     setLimit(parseInt(value));

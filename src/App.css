@@ -7,6 +7,12 @@
   font-family: "Open Sans", sans-serif;
 }
 
+html,
+body{
+  width:100%;
+  overflow-x:hidden;
+}
+
 .container {
   width: 50%;
   margin: 2rem auto;
@@ -35,4 +41,10 @@ button {
 }
 .scroll-button button:hover {
   background: #1565c0;
+}
+
+@media only screen and (max-width:600px) {
+  .container {
+    width: 100%;
+  }
 }

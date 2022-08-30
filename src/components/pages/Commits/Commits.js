@@ -2,20 +2,19 @@ import React, { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import moment from "moment";
 import axios from "../../../axios";
-import "./Repository.css";
+import "./Commits.css";
 import Loading from "../../ui/Loading";
 import ScrollButton from "../../ui/ScrollButton";
 
-const Repository = () => {
+const Commits = () => {
   const params = useParams();
-
-  console.log("params", params);
 
   const [commits, setCommits] = useState([]);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     setLoading(true);
+    /** Fetch GitHub API for commits, default 30 most recent results  */
     const fetchCommits = async () => {
       try {
         const { data } = await axios.get(
@@ -76,4 +75,4 @@ const Repository = () => {
   );
 };
 
-export default Repository;
+export default Commits;
