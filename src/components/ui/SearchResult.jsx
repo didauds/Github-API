@@ -10,7 +10,7 @@ const SearchResult = ({ repo }) => {
 
       <div className="repo-info">
         <h3>{repo.owner.login}</h3>
-        <a href={repo.clone_url} target="_blank">
+        <a href={repo.clone_url} target="_blank" rel="noreferrer">
           {repo.clone_url}
         </a>
         <p>{repo.description}</p>

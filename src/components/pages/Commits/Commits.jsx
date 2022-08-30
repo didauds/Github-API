@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import moment from "moment";
-import axios from "../../../axios";
+import axios from "../../../utils/axios";
 import "./Commits.css";
 import Loading from "../../ui/Loading";
-import ScrollButton from "../../ui/ScrollButton";
+import ScrollToTopButton from "../../ui/ScrollToTopButton";
 
 const Commits = () => {
   const params = useParams();
@@ -59,7 +59,7 @@ const Commits = () => {
                 <li>Committer: {commit.commit.committer.name}</li>
                 <li>Message: {commit.commit.message}</li>
                 <li>
-                  <a href={commit.html_url} target="_blank">
+                  <a href={commit.html_url} target="_blank" rel="noreferrer">
                     Click to view this commit
                   </a>
                 </li>
@@ -70,7 +70,7 @@ const Commits = () => {
           <h2>No repos for this user...</h2>
         )}
       </div>
-      <ScrollButton />
+      <ScrollToTopButton />
     </div>
   );
 };

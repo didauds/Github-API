@@ -11,6 +11,8 @@
 }
 .search-form form {
   margin: 10px 0;
+  display: flex;
+  align-items: center;
 }
 .search-form input {
   width: 60%;

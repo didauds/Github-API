@@ -1,6 +1,6 @@
 import React from "react";
 
-const ScrollButton = () => {
+const ScrollToTopButton = () => {
   return (
     <div className="scroll-button">
       <button
@@ -14,4 +14,4 @@ const ScrollButton = () => {
   );
 };
 
-export default ScrollButton;
+export default ScrollToTopButton;

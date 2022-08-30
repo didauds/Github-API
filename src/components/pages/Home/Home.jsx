@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
-import axios from "../../../axios";
+import axios from "../../../utils/axios";
 import SearchResult from "../../ui/SearchResult";
 import "./Home.css";
 import Loading from "../../ui/Loading";
-import ScrollButton from "../../ui/ScrollButton";
+import ScrollToTopButton from "../../ui/ScrollToTopButton";
 
 const Home = () => {
   const [query, setQuery] = useState("");
@@ -116,7 +116,7 @@ const Home = () => {
         )}
       </div>
 
-      <ScrollButton />
+      <ScrollToTopButton />
     </div>
   );
 };
