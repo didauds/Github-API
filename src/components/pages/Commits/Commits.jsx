@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import moment from "moment";
 import axios from "../../../utils/axios";
-import "./Commits.css";
+import "./commits.css";
 import Loading from "../../ui/Loading";
 import ScrollToTopButton from "../../ui/ScrollToTopButton";
 
@@ -32,7 +32,7 @@ const Commits = () => {
       }
     };
     fetchCommits();
-  }, []);
+  }, [params.login, params.name]);
 
   return (
     <div className="container">
@@ -49,7 +49,7 @@ const Commits = () => {
             <Loading />
           </div>
         )}
-        {commits ? (
+        {(commits && commits.length !== 0) ? (
           commits.map((commit) => {
             return (
               <ul className="commit-content" key={commit.node_id}>
@@ -67,7 +67,7 @@ const Commits = () => {
             );
           })
         ) : (
-          <h2>No repos for this user...</h2>
+          <h2>No commits for this user.</h2>
         )}
       </div>
       <ScrollToTopButton />

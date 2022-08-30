@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "../../../utils/axios";
 import SearchResult from "../../ui/SearchResult";
-import "./Home.css";
+import "./home.css";
 import Loading from "../../ui/Loading";
 import ScrollToTopButton from "../../ui/ScrollToTopButton";
 
@@ -11,6 +11,7 @@ const Home = () => {
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(10);
   const [loading, setLoading] = useState(false);
+  const [showScrollToTop, setShowScrollToTop] = useState(false);
 
   const handleQueryInput = (e) => {
     const value = e.target.value;
@@ -19,6 +20,8 @@ const Home = () => {
 
   /** Fetch GitHub API, sort by number of Stars in descending order */
   const fetchRepos = async () => {
+    setRepos([]);
+    setShowScrollToTop(false);
     setLoading(true);
     try {
       const { data } = await axios.get(`/search/repositories?q=${query}`, {
@@ -30,6 +33,7 @@ const Home = () => {
         },
       });
       setLoading(false);
+      setShowScrollToTop(true);
       return data?.items;
     } catch (error) {
       console.error(error);
@@ -112,11 +116,11 @@ const Home = () => {
             return <SearchResult repo={repo} key={repo.id} />;
           })
         ) : (
-          <h2>There is nothing to display</h2>
+          <h2 className='no-results'>There is nothing to display.</h2>
         )}
       </div>
 
-      <ScrollToTopButton />
+      {(showScrollToTop && repos) && <ScrollToTopButton />}
     </div>
   );
 };
