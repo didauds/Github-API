@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
-import axios from "../../../utils/axios";
-import SearchResult from "../../ui/SearchResult";
+import axios from "../../utils/axios";
+// import SearchResult from "../../components/ui/SearchResult";
 import "./home.css";
-import Loading from "../../ui/Loading";
-import ScrollToTopButton from "../../ui/ScrollToTopButton";
+import Loading from "../../components/ui/Loading";
+import ScrollToTopButton from "../../components/ui/ScrollToTopButton";
+import ResultList from "../../components/results-list/ResultsList";
 
 const Home = () => {
   const [query, setQuery] = useState("");
@@ -82,13 +83,13 @@ const Home = () => {
   return (
     <div className="container">
       <div className="search-form">
-        <h2>Search GitHub Repository</h2>
+        {/* <h2>Search GitHub Repository</h2> */}
         <form>
           <label>Repository</label>
           <input value={query} onChange={handleQueryInput} type="text" />
           <button onClick={handleSearch}>Search</button>
         </form>
-        <div className="more-options">
+        {/* <div className="more-options">
           <label>
             <span>Per Page</span>
             <select onChange={handlePageLimit}>
@@ -102,22 +103,23 @@ const Home = () => {
             <button onClick={handlePrevPage}>prev</button>
             <button onClick={handleNextPage}>next</button>
           </div>
-        </div>
+        </div> */}
       </div>
       <div className="search-results">
-        {loading && (
-          <div className="loading-spinner">
-            <Loading />
-          </div>
-        )}
+        {loading && (<Loading />)}
 
         {repos ? (
+          <ResultList results={repos} />
+        ) : (
+          <h2 className='no-results'>There is nothing to display.</h2>
+        )}
+        {/* {repos ? (
           repos.map((repo) => {
             return <SearchResult repo={repo} key={repo.id} />;
           })
         ) : (
           <h2 className='no-results'>There is nothing to display.</h2>
-        )}
+        )} */}
       </div>
 
       {(showScrollToTop && repos) && <ScrollToTopButton />}

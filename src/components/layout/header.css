@@ -1,0 +1,20 @@
+header {
+  background-color: #444;
+  padding: 1rem;
+  color: #fff;
+  height: 9rem;
+}
+
+.header-logo {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.header-logo img {
+  width: 4rem;
+}
+
+.header-logo--name {
+  font-size:2rem;
+}

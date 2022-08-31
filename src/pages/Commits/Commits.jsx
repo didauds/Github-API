@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import moment from "moment";
-import axios from "../../../utils/axios";
+import axios from "../../utils/axios";
 import "./commits.css";
-import Loading from "../../ui/Loading";
-import ScrollToTopButton from "../../ui/ScrollToTopButton";
+import Loading from "../../components/ui/Loading";
+import ScrollToTopButton from "../../components/ui/ScrollToTopButton";
 
 const Commits = () => {
   const params = useParams();

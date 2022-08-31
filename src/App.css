@@ -21,9 +21,15 @@ body{
   overflow-x:hidden;
 }
 
-.container {
+/* .container {
   width: 50%;
   margin: 2rem auto;
+} */
+
+.container {
+  max-width: 1140px;
+  padding: 0 2rem;
+  margin-top: -40px;
 }
 
 button {
@@ -51,6 +57,11 @@ button {
 
 .scroll-button button:hover {
   background: var(--blue-2);
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
 }
 
 @media only screen and (max-width:600px) {
