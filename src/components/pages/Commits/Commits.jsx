@@ -9,6 +9,8 @@ import ScrollToTopButton from "../../ui/ScrollToTopButton";
 const Commits = () => {
   const params = useParams();
 
+  const {login, name} = params;
+
   const [commits, setCommits] = useState([]);
   const [loading, setLoading] = useState(false);
 
@@ -18,7 +20,7 @@ const Commits = () => {
     const fetchCommits = async () => {
       try {
         const { data } = await axios.get(
-          `repos/${params.login}/${params.name}/commits`,
+          `repos/${login}/${name}/commits`,
           {
             params: {
               per_page: 30,
@@ -32,7 +34,7 @@ const Commits = () => {
       }
     };
     fetchCommits();
-  }, [params.login, params.name]);
+  }, [login, name]);
 
   return (
     <div className="container">
@@ -40,8 +42,8 @@ const Commits = () => {
         Back
       </Link>
       <div className="repo-information">
-        <h2>Username: {params.login}</h2>
-        <h2>Repository: {params.name}</h2>
+        <h2>Username: {login}</h2>
+        <h2>Repository: {name}</h2>
       </div>
       <div className="commits">
         {loading && (
@@ -51,15 +53,19 @@ const Commits = () => {
         )}
         {(commits && commits.length !== 0) ? (
           commits.map((commit) => {
+
+            const {committer, message} = commit.commit;
+            const {node_id, html_url} = commit;
+
             return (
-              <ul className="commit-content" key={commit.node_id}>
+              <ul className="commit-content" key={node_id}>
                 <li>
-                  Date: {moment(commit.commit.committer.date).format("LLLL")}
+                  Date: {moment(committer.date).format("LLLL")}
                 </li>
-                <li>Committer: {commit.commit.committer.name}</li>
-                <li>Message: {commit.commit.message}</li>
+                <li>Committer: {committer.name}</li>
+                <li>Message: {message}</li>
                 <li>
-                  <a href={commit.html_url} target="_blank" rel="noreferrer">
+                  <a href={html_url} target="_blank" rel="noreferrer">
                     Click to view this commit
                   </a>
                 </li>

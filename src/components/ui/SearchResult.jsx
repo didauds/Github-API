@@ -2,19 +2,23 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const SearchResult = ({ repo }) => {
+
+  const {description, name, clone_url: { repository_url } } = repo;
+  const {avatar_url, login} = repo.owner;
+
   return (
     <div className="repo">
       <div className="image">
-        <img src={repo.owner.avatar_url} alt={repo.owner.login} />
+        <img src={avatar_url} alt={login} />
       </div>
 
       <div className="repo-info">
-        <h3>{repo.owner.login}</h3>
-        <a href={repo.clone_url} target="_blank" rel="noreferrer">
-          {repo.clone_url}
+        <h3>{login}</h3>
+        <a href={repository_url} target="_blank" rel="noreferrer">
+          {repository_url}
         </a>
-        <p>{repo.description}</p>
-        <Link to={`/repos/${repo.owner.login}/${repo.name}`}>
+        <p>{description}</p>
+        <Link to={`/repos/${login}/${name}`}>
           Click to view commits
         </Link>
       </div>
