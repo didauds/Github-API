@@ -2,12 +2,16 @@
 
 :root {
   --white: #ffffff;
+  --black: #000000;
   --dark-gray-1: #444;
   --dark-gray-2: #333;
   --light-gray-1: #f5f5f5; 
-  --light-gray-2: #6E8098;
+  --light-gray-2: #f3ebf6;
+  --light-gray-3: #B0BEC5;
+  --light-gray-4: #6E8098;
   --blue-1: #1976d2;
   --blue-2: #1565c0;
+  --red: #ff0000;
 }
 
 * {
@@ -33,6 +37,18 @@ button {
   outline: none;
   border-radius: 5px;
   border: none;
+}
+
+#light {
+  background-color: var(--white);
+  color: var(--black);
+  transition: all 1s ease;
+}
+
+#dark {
+  background-color: var(--dark-gray-1);
+  color: var(--white);
+  transition: all 1s ease;
 }
 
 .container {
@@ -65,7 +81,7 @@ button {
 
 .error {
   text-align: center;
-  color: red;
+  color: var(--red);
 }
 
 .error button {

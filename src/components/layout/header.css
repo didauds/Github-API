@@ -1,8 +1,15 @@
 header {
-  background-color: var(--dark-gray-1);;
   padding: 1rem;
   color: var(--white);
   height: 9rem;
+}
+
+#light header {
+  background-color: var(--light-gray-4);;
+}
+
+#dark header {
+  background-color: var(--dark-gray-2);
 }
 
 .header-logo {
@@ -17,4 +24,9 @@ header {
 
 .header-logo--name {
   font-size: 2rem;
+}
+
+.header-toggle {
+  margin-left: auto;
+  padding: 5px;
 }

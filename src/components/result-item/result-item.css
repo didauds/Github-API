@@ -1,10 +1,17 @@
 .item-card {
   display: flex;
-  background-color: var(--light-gray-1);
   border-radius: 30px;
   padding: 1rem;
   gap: 1rem;
   align-items: center;
+}
+
+#dark .item-card {
+  background-color: var(--dark-gray-2);
+}
+
+#light .item-card {
+  background-color: var(--light-gray-2);
 }
 
 .item-card--image {
@@ -22,7 +29,8 @@
 
 
 .item-card--content p {
-  color: var(--light-gray-2);;
+  color: var(--light-gray-4);
   font-size: 0.8rem;
   padding-top: 5px;
+  text-decoration: underline;
 }

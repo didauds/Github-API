@@ -77,39 +77,45 @@ const Home = () => {
   };
 
   return (
-    <div className="container">
-      <div className="search-form">
-        <form>
-          <label>Repository</label>
-          <input value={query} onChange={handleQueryInput} type="text" />
-          <button onClick={handleSearch}>Search</button>
-        </form>
-      </div>
-      <div className="search-results">
-        {error && (
-          <div className="error">
-            <h2>Ooops! Looks like something went wrong.</h2>
-            <Link to="/">
-              <button onClick={refreshPage}>Refresh the page</button>
-            </Link>
+    <main
+      style={
+        repos && repos.length !== 0 ? { height: "100%" } : { height: "100vh" }
+      }
+    >
+      <div className="container">
+        <div className="search-form">
+          <form>
+            <label>Repository</label>
+            <input value={query} onChange={handleQueryInput} type="text" />
+            <button onClick={handleSearch}>Search</button>
+          </form>
+        </div>
+        <div className="search-results">
+          {error && (
+            <div className="error">
+              <h2>Ooops! Looks like something went wrong.</h2>
+              <Link to="/">
+                <button onClick={refreshPage}>Refresh the page</button>
+              </Link>
+            </div>
+          )}
+          {repos ? (
+            <ResultList results={repos} />
+          ) : (
+            <h2>There is nothing to display.</h2>
+          )}
+        </div>
+
+        {showLoadMoreBtn && repos && (
+          <div className="load-more--btn">
+            <button onClick={loadMore}>Load More</button>
           </div>
         )}
-        {repos ? (
-          <ResultList results={repos} />
-        ) : (
-          <h2>There is nothing to display</h2>
-        )}
+        {showScrollToTop && repos && <ScrollToTopButton />}
+
+        {loading && <Loading />}
       </div>
-
-      {showLoadMoreBtn && repos && (
-        <div className="load-more--btn">
-          <button onClick={loadMore}>Load More</button>
-        </div>
-      )}
-      {showScrollToTop && repos && <ScrollToTopButton />}
-
-      {loading && <Loading />}
-    </div>
+    </main>
   );
 };
 
