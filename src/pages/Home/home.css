@@ -1,13 +1,16 @@
 /* Search Form */
 .search-form {
-  background: #333;
-  /* padding: 10px 40px; */
+  background: var(--dark-gray-2);
+  padding: 10px 15px;
   border-radius: 5px;
-  /* height: 10rem; */
   display: flex;
   justify-content: center;
   flex-direction: column;
   color: var(--white);
+}
+
+.search-form label {
+  font-size: 14px;
 }
 
 .search-form form {
@@ -17,7 +20,6 @@
 }
 
 .search-form input {
-  /* width: 60%; */
   width: 100%;
   margin: 0 10px;
 }
@@ -27,6 +29,10 @@
   padding: 14px;
   border-radius: 5px;
   border: none;
+}
+
+.search-form form button {
+  padding: 14px;
 }
 
 .search-form button {
@@ -43,7 +49,8 @@
 .search-results {
   background-color: var(--white);
   padding: 10px;
-  margin: 20px 0;
+  margin: 0px;
+  margin-top: 40px;
   border-radius: 5px;
   word-break: break-word;
 }
@@ -58,7 +65,7 @@
   margin: 5px 0px;
   align-items: center;
   padding: 5px 0px;
-  border-bottom: var(--dark-gray) solid 1px;
+  border-bottom: var(--dark-gray-1) solid 1px;
 }
 
 .repo .image img {
@@ -72,52 +79,16 @@
   padding: 0 10px;
 }
 
-/* Pagination */
-.more-options {
-  margin-top: 10px;
-  display: flex;
-  flex-direction: row;
-  justify-content: right;
+.load-more--btn {
+  text-align: center;
 }
 
-.more-options select {
-  margin: 0 10px;
+.load-more--btn button{
+  padding: 14px 40px;
+  background: var(--blue-1);
+  margin: 0 8px;
+  color: var(--white);
 }
-
-.more-options select,
-.pagination button {
-  outline: none;
-  padding: 5px;
-  border-radius: 5px;
-  border: none;
-}
-
-.pagination button {
-  background-color: var(--white);
-  color: #333;
-  margin: 0 5px;
-}
-
-@media only screen and (max-width:1366px) {
-  .search-form {
-    /* height: 15rem; */
-    padding: 10px 15px;
-  }
-
-  .search-form label {
-    font-size: 14px;
-  }
-
-  .search-form input {
-    /* width: 50%; */
-  }
-
-  .search-form form button {
-    padding: 14px;
-  }
-
-  .search-results {
-    margin: 0px;
-    margin-top: 40px;
-  }
+.load-more--btn button:hover{
+  background: var(--blue-2);
 }

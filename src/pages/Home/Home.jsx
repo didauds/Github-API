@@ -1,18 +1,20 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import axios from "../../utils/axios";
-// import SearchResult from "../../components/ui/SearchResult";
 import "./home.css";
 import Loading from "../../components/ui/Loading";
 import ScrollToTopButton from "../../components/ui/ScrollToTopButton";
-import ResultList from "../../components/results-list/ResultsList";
+import ResultList from "../../components/Results-list/ResultsList";
 
 const Home = () => {
   const [query, setQuery] = useState("");
   const [repos, setRepos] = useState([]);
   const [page, setPage] = useState(1);
-  const [limit, setLimit] = useState(10);
+  const [limit, setLimit] = useState(30);
   const [loading, setLoading] = useState(false);
   const [showScrollToTop, setShowScrollToTop] = useState(false);
+  const [showLoadMoreBtn, setShowLoadMoreBtn] = useState(false);
+  const [error, setError] = useState(false);
 
   const handleQueryInput = (e) => {
     const value = e.target.value;
@@ -21,8 +23,8 @@ const Home = () => {
 
   /** Fetch GitHub API, sort by number of Stars in descending order */
   const fetchRepos = async () => {
-    setRepos([]);
     setShowScrollToTop(false);
+    setShowLoadMoreBtn(false);
     setLoading(true);
     try {
       const { data } = await axios.get(`/search/repositories?q=${query}`, {
@@ -34,15 +36,18 @@ const Home = () => {
         },
       });
       setLoading(false);
+      setShowLoadMoreBtn(true);
       setShowScrollToTop(true);
       return data?.items;
     } catch (error) {
       console.error(error);
+      setError(true);
       return null;
     }
   };
 
   const handleSearch = async (e) => {
+    setRepos([]);
     e.preventDefault();
     if (query) {
       const fetchedRepos = await fetchRepos();
@@ -52,25 +57,7 @@ const Home = () => {
     }
   };
 
-  const handlePrevPage = () => {
-    setPage((page) => {
-      if (page === 1) return page;
-      else return page - 1;
-    });
-  };
-
-  const handleNextPage = () => {
-    setPage((page) => page + 1);
-  };
-
-  /** Handle number of Repo displaying on a page */
-  const handlePageLimit = (e) => {
-    const value = e.target.value;
-    setLimit(parseInt(value));
-  };
-
   useEffect(() => {
-    setRepos([]);
     const displayReposOnChange = async () => {
       if (query) {
         const items = await fetchRepos();
@@ -80,49 +67,48 @@ const Home = () => {
     displayReposOnChange();
   }, [page, limit]);
 
+  const loadMore = () => {
+    setPage((page) => page + 1);
+    setLimit(limit + 30);
+  };
+
+  const refreshPage = () => {
+    window.location.reload(false);
+  };
+
   return (
     <div className="container">
       <div className="search-form">
-        {/* <h2>Search GitHub Repository</h2> */}
         <form>
           <label>Repository</label>
           <input value={query} onChange={handleQueryInput} type="text" />
           <button onClick={handleSearch}>Search</button>
         </form>
-        {/* <div className="more-options">
-          <label>
-            <span>Per Page</span>
-            <select onChange={handlePageLimit}>
-              <option value="10">10</option>
-              <option value="20">20</option>
-              <option value="50">50</option>
-              <option value="100">100</option>
-            </select>
-          </label>
-          <div className="pagination">
-            <button onClick={handlePrevPage}>prev</button>
-            <button onClick={handleNextPage}>next</button>
-          </div>
-        </div> */}
       </div>
       <div className="search-results">
-        {loading && (<Loading />)}
-
+        {error && (
+          <div className="error">
+            <h2>Ooops! Looks like something went wrong.</h2>
+            <Link to="/">
+              <button onClick={refreshPage}>Refresh the page</button>
+            </Link>
+          </div>
+        )}
         {repos ? (
           <ResultList results={repos} />
         ) : (
-          <h2 className='no-results'>There is nothing to display.</h2>
+          <h2>There is nothing to display</h2>
         )}
-        {/* {repos ? (
-          repos.map((repo) => {
-            return <SearchResult repo={repo} key={repo.id} />;
-          })
-        ) : (
-          <h2 className='no-results'>There is nothing to display.</h2>
-        )} */}
       </div>
 
-      {(showScrollToTop && repos) && <ScrollToTopButton />}
+      {showLoadMoreBtn && repos && (
+        <div className="load-more--btn">
+          <button onClick={loadMore}>Load More</button>
+        </div>
+      )}
+      {showScrollToTop && repos && <ScrollToTopButton />}
+
+      {loading && <Loading />}
     </div>
   );
 };

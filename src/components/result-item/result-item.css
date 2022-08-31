@@ -1,6 +1,6 @@
 .item-card {
   display: flex;
-  background-color: #F0F0F0;
+  background-color: var(--light-gray-1);
   border-radius: 30px;
   padding: 1rem;
   gap: 1rem;
@@ -21,8 +21,8 @@
 }
 
 
-.item-card--content span {
-  color: #6E8098;
-    font-size: 0.8rem;
-    padding-top: 5px;
+.item-card--content p {
+  color: var(--light-gray-2);;
+  font-size: 0.8rem;
+  padding-top: 5px;
 }

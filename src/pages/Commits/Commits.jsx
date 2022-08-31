@@ -9,28 +9,27 @@ import ScrollToTopButton from "../../components/ui/ScrollToTopButton";
 const Commits = () => {
   const params = useParams();
 
-  const {login, name} = params;
+  const { login, name } = params;
 
   const [commits, setCommits] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
 
   useEffect(() => {
     setLoading(true);
     /** Fetch GitHub API for commits, default 30 most recent results  */
     const fetchCommits = async () => {
       try {
-        const { data } = await axios.get(
-          `repos/${login}/${name}/commits`,
-          {
-            params: {
-              per_page: 30,
-            },
-          }
-        );
+        const { data } = await axios.get(`repos/${login}/${name}/commits`, {
+          params: {
+            per_page: 30,
+          },
+        });
         setCommits(data);
         setLoading(false);
       } catch (error) {
         console.error(error);
+        setError(true);
       }
     };
     fetchCommits();
@@ -39,42 +38,41 @@ const Commits = () => {
   return (
     <div className="container">
       <Link to="/" className="back">
-        Back
+        <button>Back</button>
       </Link>
       <div className="repo-information">
         <h2>Username: {login}</h2>
         <h2>Repository: {name}</h2>
       </div>
       <div className="commits">
-        {loading && (
-          <div className="loading-spinner">
-            <Loading />
+        {error && (
+          <div className="error">
+            <h2>Ooops! Looks like something went wrong.</h2>
+            <Link to="/">
+              <button>Go back to Home</button>
+            </Link>
           </div>
         )}
-        {(commits && commits.length !== 0) ? (
-          commits.map((commit) => {
+        {loading && <Loading />}
+        {commits && commits.length !== 0
+          ? commits.map((commit) => {
+              const { committer, message } = commit.commit;
+              const { node_id, html_url } = commit;
 
-            const {committer, message} = commit.commit;
-            const {node_id, html_url} = commit;
-
-            return (
-              <ul className="commit-content" key={node_id}>
-                <li>
-                  Date: {moment(committer.date).format("LLLL")}
-                </li>
-                <li>Committer: {committer.name}</li>
-                <li>Message: {message}</li>
-                <li>
-                  <a href={html_url} target="_blank" rel="noreferrer">
-                    Click to view this commit
-                  </a>
-                </li>
-              </ul>
-            );
-          })
-        ) : (
-          <h2>No commits for this user.</h2>
-        )}
+              return (
+                <ul className="commit-content" key={node_id}>
+                  <li>Date: {moment(committer.date).format("LLLL")}</li>
+                  <li>Committer: {committer.name}</li>
+                  <li>Message: {message}</li>
+                  <li>
+                    <a href={html_url} target="_blank" rel="noreferrer">
+                      Click to view this commit
+                    </a>
+                  </li>
+                </ul>
+              );
+            })
+          : !loading && <h2>No commits for this user.</h2>}
       </div>
       <ScrollToTopButton />
     </div>

@@ -1,22 +1,22 @@
-import React from 'react'
-import { Link } from 'react-router-dom';
+import React from "react";
+import { Link } from "react-router-dom";
 import "./result-item.css";
 
 const ResultItem = (props) => {
-  console.log(props)
+  const { description, name } = props;
+  const { avatar_url, login } = props.owner;
   return (
-    <Link to={`/repos/${props.owner.login}/${props.name}`} className='item-card'>
+    <Link to={`/repos/${login}/${name}`} className="item-card">
       <div className="item-card--image">
-        <img src={props.owner.avatar_url} alt={props.owner.login} />
+        <img src={avatar_url} alt={login} />
       </div>
       <div className="item-card--content">
-        <h3>{props.owner.login}</h3>
-        <span>
-          View Profile
-        </span>
+        <h3>{name}</h3>
+        <small>{description}</small>
+        <p>View Commits</p>
       </div>
     </Link>
-  )
-}
+  );
+};
 
-export default ResultItem
+export default ResultItem;

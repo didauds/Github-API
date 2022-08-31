@@ -1,18 +1,18 @@
 .repo-information {
-  background: var(--dark-gray);
+  background: var(--dark-gray-1);
   padding: 30px;
   border-radius: 5px;
   color: var(--white);
 }
 
 .commits {
-  background-color: var(--light-gray);
+  background-color: var(--light-gray-1);
   padding: 10px 30px;
   margin: 20px 0;
   border-radius: 5px;
 }
 
-.back {
+.back button{
   background: var(--blue-1);
   color: var(--white);
   border-radius: 5px;
@@ -21,13 +21,17 @@
   margin: 10px 0;
   text-decoration: none;
 }
-.back:hover {
+.back button:hover {
   background: var(--blue-2);
 }
 
 .commit-content {
   padding: 20px;
-  border-bottom: 1px solid var(--dark-gray);;;
+  border-bottom: 1px solid var(--dark-gray-1);
+}
+
+.commit-content a {
+  text-decoration: underline;
 }
 
 .commit-content:last-child {

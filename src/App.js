@@ -1,7 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-
 import "./App.css";
-import Header from "./components/layout/Header";
+import Header from "./components/Layout/Header";
 import Home from "./pages/Home/Home";
 import Commits from "./pages/Commits/Commits";
 
