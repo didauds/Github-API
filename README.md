@@ -1,14 +1,14 @@
 ## About this project
 
-This project is written in ReactJS and utilizes the GitHub API in order to search and get any relevant repositories sorting by Stars in descending order.
+- This project is written in ReactJS and utilizes the GitHub API in order to search and get any relevant repositories sorting by Stars in descending order.
 
-This project also provides dark/light theme by switching a button in the upper right corner.
+- This project also provides dark/light theme by switching a button in the upper right corner.
 
-After searching, 30 results appear, and you can load 30 more results through the Load more button at the bottom of the page.
+- After searching, 30 results appear, and you can load 30 more results through the Load more button at the bottom of the page.
 
-In the Commits page, you can view most recent 30 commits with date, committer and commit messages for each commit.
+- In the Commits page, you can view most recent 30 commits with date, committer and commit messages for each commit.
 
-You can also visit the commits in GitHub page by clicking the links.
+- You can also visit the commits in GitHub page by clicking the links.
 
 ## Available Scripts
 
