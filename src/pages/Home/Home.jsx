@@ -79,7 +79,9 @@ const Home = () => {
   return (
     <main
       style={
-        repos && repos.length !== 0 ? { height: "100%" } : { height: "100vh" }
+        repos && repos.length !== 0
+          ? { height: "100%" }
+          : { height: "calc(100vh - 9rem + 40px)" }
       }
     >
       <div className="container">
