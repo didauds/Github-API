@@ -49,8 +49,8 @@ const Home = () => {
   const handleSearch = async (e) => {
     e.preventDefault();
     setRepos([]);
-    // setPage(1);
-    // setLimit(30);
+    setPage(1);
+    setLimit(30);
 
     if (query) {
       const fetchedRepos = await fetchRepos();
