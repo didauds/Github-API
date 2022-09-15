@@ -11,7 +11,7 @@ const ThemeToggle = () => {
 
   return (
     <div className="header-toggle">
-      <h4>{theme} mode</h4>
+      <h4 className="toggle-text">{theme} mode</h4>
       <Switch
         onChange={handleThemeToggle}
         checked={theme === "light"}

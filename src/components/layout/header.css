@@ -31,6 +31,11 @@ header {
   padding: 5px;
 }
 
+.toggle-text {
+  text-transform: capitalize;
+  margin-bottom: 3px;
+}
+
 @media only screen and (max-width:600px) {
   .header-logo--name {
     font-size: 1rem;
