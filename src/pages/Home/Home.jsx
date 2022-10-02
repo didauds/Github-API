@@ -12,6 +12,7 @@ const Home = () => {
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(30);
   const [loading, setLoading] = useState(false);
+  const [isSearch, setIsSearch] = useState(true);
   const [showScrollToTop, setShowScrollToTop] = useState(false);
   const [showLoadMoreBtn, setShowLoadMoreBtn] = useState(false);
   const [error, setError] = useState(false);
@@ -30,7 +31,7 @@ const Home = () => {
       const { data } = await axios.get(`/search/repositories?q=${query}`, {
         params: {
           page,
-          per_page: limit,
+          per_page: isSearch ? 30 : limit,
           sort: "stars",
           order: "desc",
         },
@@ -50,7 +51,7 @@ const Home = () => {
     e.preventDefault();
     setRepos([]);
     setPage(1);
-    // setLimit(30);
+    setLimit(30);
 
     if (query) {
       const fetchedRepos = await fetchRepos();
@@ -62,15 +63,17 @@ const Home = () => {
 
   useEffect(() => {
     const displayReposOnChange = async () => {
-      if (query) {
+      if (!isSearch && query) {
         const items = await fetchRepos();
         setRepos(items);
       }
     };
     displayReposOnChange();
+    setIsSearch(true);
   }, [page, limit]);
 
   const loadMore = () => {
+    setIsSearch(false);
     setLimit(limit + 30);
   };
 
