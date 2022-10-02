@@ -50,7 +50,7 @@ const Home = () => {
     e.preventDefault();
     setRepos([]);
     setPage(1);
-    setLimit(30);
+    // setLimit(30);
 
     if (query) {
       const fetchedRepos = await fetchRepos();
